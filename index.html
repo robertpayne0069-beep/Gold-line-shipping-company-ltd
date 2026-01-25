@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gold Line Shipping LTD | Maritime Logistics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+.logo-bar {
+    text-align: center;
+    padding: 30px 0 10px;
+}
+
+.logo-bar img {
+    max-width: 220px;
+}
+
+.wrapper {
+    max-width: 1100px;
+    margin: 20px auto 50px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    padding: 40px;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 4px solid #c9a24d;
+    padding-bottom: 25px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 34px;
+    letter-spacing: 1px;
+}
+
+.header p {
+    margin: 8px 0;
+    color: #666;
+}
+
+.section {
+    margin-top: 45px;
+}
+
+.section h2 {
+    color: #c9a24d;
+    border-left: 5px solid #c9a24d;
+    padding-left: 12px;
+    margin-bottom: 15px;
+}
+
+.tracking-box {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.tracking-box input {
+    width: 65%;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.tracking-box button {
+    padding: 14px 22px;
+    font-size: 16px;
+    background: #c9a24d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.tracking-box button:hover {
+    background: #b08c3f;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+table td {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+table td:first-child {
+    width: 35%;
+    font-weight: bold;
+    background: #fafafa;
+}
+
+.status {
+    color: green;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 13px;
+    color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo-bar">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAyCgAwAEAAAAAQAAAjYAAAAA/8AAEQgCNgMgAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY"
+    alt="Gold Line Shipping Logo">
+</div>
+
+<div class="wrapper">
+
+<div class="header">
+    <h1>GOLD LINE SHIPPING LTD</h1>
+    <p>Global Maritime Logistics & Port Agency Services</p>
+</div>
+
+<div class="section">
+    <h2>Company Overview</h2>
+    <p>
+        Gold Line Shipping LTD is a Haifa, Israel–based maritime logistics provider founded in 1996 by
+        Mr. Jacob Ben-Shushan. The company specializes in port agency services, military and navy support,
+        project cargo handling, and RORO / vehicle transportation.
+    </p>
+    <p>
+        With over 28 years of experience, the company provides 24/7 crew changes and technical assistance
+        to global and local clients.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Shipment Tracking</h2>
+
+    <div class="tracking-box">
+        <input type="text" id="trackingInput" placeholder="Enter Tracking Number">
+        <button onclick="trackShipment()">Track Shipment</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<div class="section">
+    <h2>Contact Information</h2>
+    <table>
+        <tr><td>Email</td><td>goldlineshipping2734@gmail.com</td></tr>
+        <tr><td>Phone</td><td>+233 536 123 024</td></tr>
+        <tr><td>Location</td><td>Accra, Independence Avenue, Ghana</td></tr>
+    </table>
+</div>
+
+<div class="footer">
+    © 2026 Gold Line Shipping LTD · All Rights Reserved
+</div>
+
+</div>
+
+<script>
+const shipments = {
+    "US0089576783": {
+        client: "Robert Eldon Payne",
+        commodity: "Gold",
+        weight: "3 KG",
+        origin: "Ghana",
+        destination: "United States of America",
+        status: "In Transit"
+    }
+};
+
+function trackShipment() {
+    const input = document.getElementById("trackingInput").value.trim();
+    const result = document.getElementById("result");
+
+    if (shipments[input]) {
+        const s = shipments[input];
+        result.innerHTML = `
+        <table>
+            <tr><td>Tracking Number</td><td>${input}</td></tr>
+            <tr><td>Client Name</td><td>${s.client}</td></tr>
+            <tr><td>Commodity</td><td>${s.commodity}</td></tr>
+            <tr><td>Weight</td><td>${s.weight}</td></tr>
+            <tr><td>Origin</td><td>${s.origin}</td></tr>
+            <tr><td>Destination</td><td>${s.destination}</td></tr>
+            <tr><td>Status</td><td class="status">${s.status}</td></tr>
+        </table>`;
+    } else {
+        result.innerHTML = `<p class="error">Tracking number not found.</p>`;
+    }
+}
+</script>
+
+</body>
+</html>
