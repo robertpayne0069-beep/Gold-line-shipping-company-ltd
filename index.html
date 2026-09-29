@@ -2,55 +2,149 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gold Line Shipping LTD | Maritime Logistics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Line Shipping Company Limited</title>
 
 <style>
+html { scroll-behavior: smooth; }
+
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
-    background-color: #f4f6f9;
+    background: #f4f6f9;
     color: #333;
 }
 
-.logo-bar {
-    text-align: center;
-    padding: 30px 0 10px;
+/* ================= LOADING ANIMATION ================= */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+.loader-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 55px;
+    height: 55px;
+    border: 5px solid #e2e8f0;
+    border-top: 5px solid #c9a24d;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.loader-text {
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2933;
+    letter-spacing: 0.5px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ================= IN-LINE TRACKING LOADER ================= */
+.tracking-spinner-container {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 30px;
+}
+
+.tracking-spinner {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 15px;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid #c9a24d;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+}
+
+.tracking-loading-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2933;
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ================= HEADER ================= */
+.top-header {
+    background: #ffffff;
+    text-align: center;
+    padding: 25px 10px 10px;
+    border-bottom: 4px solid #c9a24d;
+}
+.top-header h1 {
+    margin: 0;
+    font-size: 34px;
+    letter-spacing: 1px;
+}
+
+/* ================= LOGO ================= */
+.logo-bar {
+    background: #ffffff;
+    text-align: center;
+    padding: 10px 0 20px;
+}
 .logo-bar img {
     max-width: 220px;
 }
 
+/* ================= NAVBAR ================= */
+.navbar {
+    background: #1f2933;
+    padding: 15px 0;
+    text-align: center;
+}
+.navbar a {
+    color: #ffffff;
+    margin: 0 18px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    padding: 5px 0;
+}
+.navbar a:hover {
+    color: #c9a24d;
+}
+
+/* ================= MAIN CONTAINER ================= */
 .wrapper {
     max-width: 1100px;
-    margin: 20px auto 50px;
+    margin: 40px auto 70px;
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     padding: 40px;
 }
 
-.header {
-    text-align: center;
-    border-bottom: 4px solid #c9a24d;
-    padding-bottom: 25px;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 34px;
-    letter-spacing: 1px;
-}
-
-.header p {
-    margin: 8px 0;
-    color: #666;
-}
-
+/* ================= SECTIONS ================= */
 .section {
-    margin-top: 45px;
+    margin-top: 60px;
 }
-
 .section h2 {
     color: #c9a24d;
     border-left: 5px solid #c9a24d;
@@ -58,11 +152,21 @@ body {
     margin-bottom: 15px;
 }
 
+/* ================= HERO ================= */
+.hero {
+    text-align: center;
+    margin-top: 20px;
+}
+.hero p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* ================= TRACKING ================= */
 .tracking-box {
     text-align: center;
     margin-top: 25px;
 }
-
 .tracking-box input {
     width: 65%;
     padding: 14px;
@@ -70,52 +174,153 @@ body {
     border-radius: 6px;
     border: 1px solid #ccc;
 }
-
 .tracking-box button {
-    padding: 14px 22px;
+    padding: 14px 24px;
     font-size: 16px;
     background: #c9a24d;
-    color: #fff;
+    color: #ffffff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
 }
-
 .tracking-box button:hover {
     background: #b08c3f;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* ================= REDESIGNED SHIPMENT INFO CARD ================= */
+.shipment-card {
+    border: 1px solid #e5e9f0;
+    border-radius: 12px;
+    background: #fafbfc;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
     margin-top: 25px;
 }
 
-table td {
+.shipment-header {
+    background: #1f2933;
+    color: #ffffff;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #c9a24d;
+}
+
+.tracking-id-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #a0aec0;
+}
+
+.tracking-id-value {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin-top: 3px;
+}
+
+.security-badge {
+    background: rgba(201, 162, 77, 0.18);
+    border: 1px solid #c9a24d;
+    color: #f1d78a;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.shipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 24px;
+}
+
+@media (max-width: 650px) {
+    .shipment-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.grid-item {
+    background: #ffffff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #edf2f7;
+    border-left: 4px solid #c9a24d;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item-icon {
+    width: 42px;
+    height: 42px;
+    background: #fcf8ee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c9a24d;
+    flex-shrink: 0;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #718096;
+    font-weight: 600;
+}
+
+.item-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1f2933;
+    margin-top: 4px;
+}
+
+/* ================= TABLES ================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table th, table td {
     padding: 14px;
     border-bottom: 1px solid #eee;
+    text-align: left;
 }
-
-table td:first-child {
-    width: 35%;
-    font-weight: bold;
+table th {
     background: #fafafa;
+    width: 35%;
 }
 
+/* ================= STATUS ================= */
 .status {
-    color: green;
+    color: #2e7d32;
     font-weight: bold;
 }
-
 .error {
     color: red;
     text-align: center;
-    margin-top: 20px;
+    font-weight: bold;
+    margin-top: 25px;
 }
 
+/* ================= FOOTER ================= */
 .footer {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 70px;
     font-size: 13px;
     color: #777;
 }
@@ -124,91 +329,233 @@ table td:first-child {
 
 <body>
 
+<!-- FULL-SCREEN LOADING OVERLAY (NAVIGATION) -->
+<div id="loadingOverlay" class="loader-overlay hidden">
+    <div class="spinner"></div>
+    <p class="loader-text">Loading...</p>
+</div>
+
+<!-- COMPANY NAME -->
+<div class="top-header">
+    <h1>GOLD LINE SHIPPING COMPANY LIMITED</h1>
+</div>
+
+<!-- LOGO -->
 <div class="logo-bar">
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAyCgAwAEAAAAAQAAAjYAAAAA/8AAEQgCNgMgAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY"
-    alt="Gold Line Shipping Logo">
+    <img src="gold-line-shipping-logo.jpg" alt="Gold Line Shipping Company Logo">
+</div>
+
+<!-- NAVIGATION -->
+<div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#services">Services</a>
+    <a href="#track">Track Shipment</a>
+    <a href="#contact">Contact</a>
 </div>
 
 <div class="wrapper">
 
-<div class="header">
-    <h1>GOLD LINE SHIPPING LTD</h1>
-    <p>Global Maritime Logistics & Port Agency Services</p>
-</div>
-
-<div class="section">
-    <h2>Company Overview</h2>
+<!-- HOME -->
+<div class="section hero" id="home">
+    <h2>Welcome to Gold Line Shipping</h2>
     <p>
-        Gold Line Shipping LTD is a Haifa, Israel–based maritime logistics provider founded in 1996 by
-        Mr. Jacob Ben-Shushan. The company specializes in port agency services, military and navy support,
-        project cargo handling, and RORO / vehicle transportation.
-    </p>
-    <p>
-        With over 28 years of experience, the company provides 24/7 crew changes and technical assistance
-        to global and local clients.
+        Reliable maritime logistics and sea freight solutions for high-value
+        cargo and international shipments.
     </p>
 </div>
 
-<div class="section">
-    <h2>Shipment Tracking</h2>
+<!-- ABOUT -->
+<div class="section" id="about">
+    <h2>About Us</h2>
+    <p>
+        Gold Line Shipping Company Limited is a professional maritime logistics
+        provider based in Ghana, offering secure and efficient sea freight
+        services for international shipments.
+    </p>
+</div>
 
+<!-- SERVICES -->
+<div class="section" id="services">
+    <h2>Our Services</h2>
+    <ul>
+        <li>Sea Freight & Maritime Logistics</li>
+        <li>Port Agency Services</li>
+        <li>High-Value Cargo Handling</li>
+        <li>Gold & Precious Metals Shipping</li>
+        <li>International Shipment Tracking</li>
+    </ul>
+</div>
+
+<!-- TRACK -->
+<div class="section" id="track">
+    <h2>Track Your Shipment</h2>
     <div class="tracking-box">
         <input type="text" id="trackingInput" placeholder="Enter Tracking Number">
         <button onclick="trackShipment()">Track Shipment</button>
     </div>
-
-    <div id="result"></div>
 </div>
 
-<div class="section">
+<div id="trackingResult"></div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
     <h2>Contact Information</h2>
     <table>
-        <tr><td>Email</td><td>goldlineshipping2734@gmail.com</td></tr>
-        <tr><td>Phone</td><td>+233 536 123 024</td></tr>
-        <tr><td>Location</td><td>Accra, Independence Avenue, Ghana</td></tr>
+        <tr><th>Email</th><td>goldlineshipping2734@gmail.com</td></tr>
+        <tr><th>Phone</th><td>+233 536 123 024</td></tr>
+        <tr><th>Office Location</th><td>Accra, Independence Avenue, Ghana</td></tr>
     </table>
 </div>
 
 <div class="footer">
-    © 2026 Gold Line Shipping LTD · All Rights Reserved
+    © 2026 Gold Line Shipping Company Limited. All rights reserved.
 </div>
 
 </div>
 
 <script>
-const shipments = {
-    "US0089576783": {
-        client: "Robert Eldon Payne",
-        commodity: "Gold",
-        weight: "3 KG",
-        origin: "Ghana",
-        destination: "United States of America",
-        status: "In Transit"
-    }
-};
+function showLoader(message = "Loading...") {
+    const loader = document.getElementById("loadingOverlay");
+    const loaderText = loader.querySelector(".loader-text");
+    if (loaderText) loaderText.textContent = message;
+    loader.classList.remove("hidden");
+}
 
+function hideLoader() {
+    const loader = document.getElementById("loadingOverlay");
+    loader.classList.add("hidden");
+}
+
+// Navigation spinner logic
+document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll(".navbar a");
+    
+    navLinks.forEach(link => {
+        const triggerNavigation = function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            
+            showLoader("Loading...");
+
+            setTimeout(() => {
+                hideLoader();
+                if (targetId && targetId !== "#") {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: "smooth" });
+                    }
+                }
+            }, 500);
+        };
+
+        link.addEventListener("click", triggerNavigation);
+    });
+});
+
+// Shipment Tracking Logic
 function trackShipment() {
     const input = document.getElementById("trackingInput").value.trim();
-    const result = document.getElementById("result");
+    const result = document.getElementById("trackingResult");
 
-    if (shipments[input]) {
-        const s = shipments[input];
-        result.innerHTML = `
-        <table>
-            <tr><td>Tracking Number</td><td>${input}</td></tr>
-            <tr><td>Client Name</td><td>${s.client}</td></tr>
-            <tr><td>Commodity</td><td>${s.commodity}</td></tr>
-            <tr><td>Weight</td><td>${s.weight}</td></tr>
-            <tr><td>Origin</td><td>${s.origin}</td></tr>
-            <tr><td>Destination</td><td>${s.destination}</td></tr>
-            <tr><td>Status</td><td class="status">${s.status}</td></tr>
-        </table>`;
-    } else {
-        result.innerHTML = `<p class="error">Tracking number not found.</p>`;
-    }
+    result.innerHTML = `
+        <div class="tracking-spinner-container">
+            <div class="tracking-spinner"></div>
+            <div class="tracking-loading-text">Retrieving shipment details...</div>
+        </div>
+    `;
+
+    result.scrollIntoView({ behavior: "smooth" });
+
+    setTimeout(() => {
+        if (input === "GLU006927342005") {
+            result.innerHTML = `
+            <div class="section">
+                <h2>Shipment Information</h2>
+                <div class="shipment-card">
+                    <div class="shipment-header">
+                        <div>
+                            <div class="tracking-id-label">Waybill / Tracking No.</div>
+                            <div class="tracking-id-value">GLU006927342005</div>
+                        </div>
+                        <div class="security-badge">Valuable Cargo (VAL)</div>
+                    </div>
+                    <div class="shipment-grid">
+                        <div class="grid-item">
+                            <div class="item-icon">
+                                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1"></path></svg>
+                            </div>
+                            <div class="item-content">
+                                <span class="item-label">Carrier</span>
+                                <span class="item-value">Gold Line Freight Services Ltd.</span>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="item-icon">
+                                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                            </div>
+                            <div class="item-content">
+                                <span class="item-label">Shipping Method</span>
+                                <span class="item-value">Ocean Freight (LCL)</span>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="item-icon">
+                                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                            </div>
+                            <div class="item-content">
+                                <span class="item-label">Package Weight</span>
+                                <span class="item-value">3.00 kg (6.61 lbs) G.W.</span>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="item-icon">
+                                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+                            </div>
+                            <div class="item-content">
+                                <span class="item-label">Commodity</span>
+                                <span class="item-value">Precious Metals (HS 7108.12)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Sender Details</h2>
+                <table>
+                    <tr><th>Name</th><td>Gold Line Shipping Company Limited</td></tr>
+                    <tr><th>Address</th><td>Accra, Ghana</td></tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Recipient Details</h2>
+                <table>
+                    <tr><th>Name</th><td>Robert Eldon Payne Jr.</td></tr>
+                    <tr><th>Address</th>
+                    <td>1300 Nashville Pike, Apt 1106, Gallatin, TN 37066, USA</td></tr>
+                    <tr><th>Email</th><td>vandyboys229@gmail.com</td></tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Current Status</h2>
+                <table>
+                    <tr><th>Status</th>
+                    <td class="status">At company office, preparing for labeling and shipment</td></tr>
+                    <tr><th>Location</th><td>Accra, Ghana</td></tr>
+                    <tr><th>Next Step</th>
+                    <td>Package will be labeled and dispatched for sea shipment</td></tr>
+                </table>
+            </div>
+            `;
+        } else {
+            result.innerHTML = `<p class="error">Tracking number not found. Please verify and try again.</p>`;
+        }
+    }, 2500);
 }
 </script>
 
 </body>
 </html>
-<img src="gold-line-shipping-logo-v2.jpg" alt="Gold Line Shipping Logo">
